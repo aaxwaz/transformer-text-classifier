@@ -8,7 +8,13 @@ Vietnamese Text Classifier using Transformer model
 
 
 ## Testing Results
+### Testing with random text
 
+```python infer.py --mode cls --prime "đội tuyển bồ đào nha của ronaldo đã phải về nước sau thất bại trước uruguay"```
+
+### Testing the model on VNTC dataset
+
+```python infer.py --mode test --input_path <path-to-data>/VNTC/corpus/test/```
 ### Confusion Matrix
 
 
@@ -25,3 +31,5 @@ Vietnamese Text Classifier using Transformer model
 |thể thao	| 23 		|   25		|    4		|    3		|   17		|    6		|   27		| 6535		|   25		|	       2|
 |văn hóa	|217 		|  298		|   53		|   15		|   46		|   30		|  127		|   46		| 5397		|	      21|
 |vi tính	|101 		|   24		|   36		|   56		|   24		|    4		|   30		|   12		|   28		|	    4245|
+
+
