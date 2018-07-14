@@ -10,7 +10,7 @@ Vietnamese Text Classifier using Transformer model
 ## Testing Results
 ### Testing with random text
 
-```python infer.py --mode cls --prime "đội tuyển bồ đào nha của ronaldo đã phải về nước sau thất bại trước uruguay"```
+```python infer.py --mode clf --prime "đội tuyển bồ đào nha của ronaldo đã phải về nước sau thất bại trước uruguay"```
 
 ### Testing the model on VNTC dataset
 
