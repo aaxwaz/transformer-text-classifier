@@ -30,6 +30,7 @@ def _format_line(line):
 
 
 def _classify(data):
+    original_len = len(data)
     batch_size = min(args.max_samples, len(data) // saved_args.maxlen)
     if batch_size == 0:
         prime = np.array(data[:saved_args.maxlen])
@@ -40,7 +41,11 @@ def _classify(data):
     else:
         prime = data[:saved_args.maxlen * batch_size]
         prime = np.reshape(np.array(prime), [batch_size, saved_args.maxlen])
-    preds = sess.run(softmax, feed_dict={g.x: prime})
+    preds, dec, proj = sess.run((softmax, model.dec, model.proj), feed_dict={model.x: prime})
+    dec = dec[0].flatten()
+    proj = proj[np.argmax(preds)]
+    attns = np.sum(np.reshape(dec * proj, [saved_args.maxlen, saved_args.hidden_units]), 1)[:original_len]
+    print((attns - np.min(attns)) / (np.max(attns) - np.min(attns)))
     return np.argmax(preds)
 
 
@@ -75,7 +80,7 @@ if __name__ == '__main__':
     parser.add_argument('--input_path', type=str,
                         default='../classification/data/VNTC/corpus/test/')
     parser.add_argument('--prime', type=str,
-                        default="đội tuyển bồ đào nha của ronaldo đã phải về nước sau thất bại trước uruguay")
+                        default="đá bóng với đá cầu nhảy dây bắn bi trốn tìm")
     parser.add_argument('--max_samples', type=int, default=20)
     parser.add_argument('--mode', type=str, default="clf")
     parser.add_argument('--ckpt_path', type=str, default="./ckpt")
@@ -86,18 +91,18 @@ if __name__ == '__main__':
     with open(args.saved_args_path, 'rb') as f:
         saved_args = pickle.load(f)
     saved_args.embeddings_path = None
-    g = TransformerDecoder(is_training=False, args=saved_args)
+    model = TransformerDecoder(is_training=False, args=saved_args)
     pad_idx = word2idx.get("<eos>")
     unk_idx = word2idx.get("<unk>")
     input_dirs = os.listdir(args.input_path)
-    with tf.Session(graph=g.graph) as sess:
+    with tf.Session(graph=model.graph) as sess:
         total = 0.0
         correct = 0.0
         sess.run(tf.global_variables_initializer())
         saver = tf.train.Saver(tf.global_variables())
         if args.ckpt_path:
             saver.restore(sess, tf.train.latest_checkpoint(args.ckpt_path))
-        softmax = tf.reduce_mean(tf.nn.softmax(g.logits), axis=0)
+        softmax = tf.reduce_mean(tf.nn.softmax(model.logits), axis=0)
         if args.mode == "test":
             input_dirs = os.listdir(args.input_path)
             total_examples = 0

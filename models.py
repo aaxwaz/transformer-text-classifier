@@ -57,9 +57,9 @@ class TransformerDecoder:
                                                        scope="self_attention")
 
                         self.dec = feedforward(self.dec, num_units=[4 * args.hidden_units, args.hidden_units])
+                self.proj = tf.get_variable("proj", [args.num_classes, args.hidden_units * args.maxlen])
                 self.logits = tf.matmul(tf.reshape(self.dec, [-1, args.hidden_units * args.maxlen]),
-                                        tf.get_variable("proj", [args.num_classes, args.hidden_units * args.maxlen]),
-                                        transpose_b=True)
+                                        self.proj, transpose_b=True)
 
             # self.logits = tf.layers.dense(self.dec, len(word2idx))
             self.preds = tf.to_int32(tf.argmax(self.logits, axis=-1))
