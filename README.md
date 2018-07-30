@@ -3,6 +3,9 @@ Vietnamese Text Classifier using Transformer model
 
 [![Accuracy](https://img.shields.io/badge/accuracy-87%2E91%25-green.svg)](https://github.com/suicao/transformer-text-classifier)
 
+## Web Demo
+
+You can view the web demo [here](http://ec2-13-58-206-114.us-east-2.compute.amazonaws.com/)
 
 ## Model Architecture
 
