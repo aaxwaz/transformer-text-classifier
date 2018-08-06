@@ -7,6 +7,17 @@ Vietnamese Text Classifier using Transformer model
 
 You can view the web demo [here](http://ec2-13-58-206-114.us-east-2.compute.amazonaws.com/)
 
+Or you can use the the following API to get the results directly.
+
+Method: ```POST```
+
+URL: ```http://13.58.206.114/clf```
+
+Request Body: ```{
+"data": "đội tuyển bồ đào nha của ronaldo đã phải về nước sau thất bại trước uruguay"
+}```
+
+Response: ```{"sent": <the formatted sentence>, "probs": <probabilies over each class>, "attns": <attention values over each token in the sentence>, "pred": <predicted class id>}```
 ## Model Architecture
 
 
