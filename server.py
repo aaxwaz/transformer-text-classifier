@@ -81,6 +81,7 @@ with model.graph.as_default():
 @app.route('/clf', methods=['POST'])
 def classify():
     content = request.get_json()
+    print(content["data"], file=sys.stderr)
     formatted_line = _format_line(content["data"])
     line_ = []
     for w in formatted_line:
