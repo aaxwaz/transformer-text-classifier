@@ -20,6 +20,7 @@ Request Body: ```{
 Response: ```{"sent": <the formatted sentence>, "probs": <probabilies over each class>, "attns": <attention values over each token in the sentence>, "pred": <predicted class id>}```
 ## Model Architecture
 
+![Simplified Transformer-Decoder](img/model.png)
 
 ## Testing Results
 ### Testing with random text
