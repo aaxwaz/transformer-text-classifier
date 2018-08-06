@@ -47,4 +47,6 @@ Response: ```{"sent": <the formatted sentence>, "probs": <probabilies over each 
 |văn hóa	|217 		|  298		|   53		|   15		|   46		|   30		|  127		|   46		| 5397		|	      21|
 |vi tính	|101 		|   24		|   36		|   56		|   24		|    4		|   30		|   12		|   28		|	    4245|
 
+## Training 
 
+Coming soon
