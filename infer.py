@@ -45,7 +45,6 @@ def _classify(data):
     dec = dec[0].flatten()
     proj = proj[np.argmax(preds)]
     attns = np.sum(np.reshape(dec * proj, [saved_args.maxlen, saved_args.hidden_units]), 1)[:original_len]
-    print((attns - np.min(attns)) / (np.max(attns) - np.min(attns)))
     return np.argmax(preds)
 
 
