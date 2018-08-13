@@ -12,7 +12,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--train_path', type=str, default='corpora/data')
-    parser.add_argument('--embeddings_path', type=str, default='corpora/embeddings.npy')
+    parser.add_argument('--embeddings_path', type=str, default=None)
     parser.add_argument('--vocab_path', type=str, default='./corpora/vocab.txt')
     parser.add_argument('--ckpt_path', type=str, default='./ckpt')
     parser.add_argument('--logdir', type=str, default='./ckpt')
