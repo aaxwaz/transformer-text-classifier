@@ -3,6 +3,8 @@ import numpy as np
 import codecs
 import regex as re
 from tqdm import tqdm
+import glob
+import os
 
 _WORD_SPLIT = re.compile("([.,!?\"/':;)(])")
 _DIGIT_RE = re.compile(br"\d")
@@ -26,16 +28,16 @@ def load_vocab(path):
 
 
 def load_train_data(train_path):
-    data = np.load(train_path)
-    classes = np.unique(data[:, -1])
-    class_weights = np.zeros(len(classes))
+    classes = len(glob.glob(train_path+"/*.npy"))
+    print("num classes = {}".format(classes))
+    class_weights = np.zeros(classes)
     result = []
-    for cls in classes.astype(np.int):
-        result.append((data[data[:, -1] == cls]).flatten())
+    for cls in range(classes):
+        result.append(np.load(os.path.join(train_path,"{}.npy".format(cls))))
         class_weights[cls] = len(result[cls])
     total_tokens = np.sum(class_weights)
-    class_weights = total_tokens/class_weights
-    class_weights = class_weights/np.mean(class_weights)
+    class_weights = total_tokens / class_weights
+    class_weights = class_weights / np.mean(class_weights)
     return result, class_weights
 
 
