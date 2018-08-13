@@ -53,7 +53,7 @@ You can download the processed training data via [this link](https://drive.googl
 
 Extract the content to the ```corpora``` folder (i.e ```corpora/data/0.npy```, ```corpora/data/1.npy``` ...). Then simply run ```python train.py``` to reproduce the result.
 
-### Training with your old dataset
+### Training with your own dataset
 
 First, prepare the ```vocab.txt``` file like the file in the ```corpora``` folder.
 
