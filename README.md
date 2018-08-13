@@ -49,7 +49,7 @@ Response: ```{"sent": <the formatted sentence>, "probs": <probabilies over each 
 
 ## Training 
 
-You can download to processed training data via [this link](https://drive.google.com/open?id=1JGQY0OVVg1RlKxLG0v9mOcP2GRoetyoH)
+You can download the processed training data via [this link](https://drive.google.com/open?id=1JGQY0OVVg1RlKxLG0v9mOcP2GRoetyoH)
 
 Extract the content to the ```corpora``` folder (i.e ```corpora/data/0.npy```, ```corpora/data/1.npy``` ...). Then simply run ```python train.py``` to reproduce the result.
 
