@@ -67,4 +67,4 @@ Then replace the tokens by their ids (as defined in ```vocab.txt"```), e.g: "0 1
 
 Finally, we obtain a 1-D numpy array of tokens for each class.
 
-You may want to use pretrained word embeddings like word2vec, in that case run ```python train.py --embedding_path <path/to/embeddings.npy>``` . Note that embeddings.npy must have a shape of [VOCAB_SIZE, EMBEDDING_SIZE] 
+You may want to use pretrained word embeddings like word2vec , in that case run ```python train.py --embedding_path <path/to/embeddings.npy>``` . Note that embeddings.npy must have a shape of [VOCAB_SIZE, EMBEDDING_SIZE] 
