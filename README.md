@@ -49,4 +49,22 @@ Response: ```{"sent": <the formatted sentence>, "probs": <probabilies over each 
 
 ## Training 
 
-Coming soon
+You can download to processed training data via [this link](https://drive.google.com/open?id=1JGQY0OVVg1RlKxLG0v9mOcP2GRoetyoH)
+
+Extract the content to the ```corpora``` folder (i.e ```corpora/data/0.npy```, ```corpora/data/1.npy``` ...). Then simply run ```python train.py``` to reproduce the result.
+
+### Training with your old dataset
+
+First, prepare the ```vocab.txt``` file like the file in the ```corpora``` folder.
+
+The ```<class-id>.npy``` are created by concatenating all documents belonged to such class.
+
+For example if you have these two documents: "Tôi yêu thể thao" and "bóng đá là môn thể thao được ưa chuộng".
+
+We'll concatenate them, i.e: "Tôi yêu thể thao bóng đá là môn thể thao được ưa chuộng".
+
+Then replace the tokens by their ids (as defined in ```vocab.txt"```), e.g: "0 1 2 3 4 5 6 7 2 3 8 9".
+
+Finally, we obtain a 1-D numpy array of tokens for each class.
+
+You may want to use pretrained word embeddings like word2vec, in that case run ```python train.py --embedding_path <path/to/embeddings.npy>``` . Note that embeddings.npy must have a shape of [VOCAB_SIZE, EMBEDDING_SIZE] 
